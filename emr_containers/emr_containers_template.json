@@ -1,0 +1,27 @@
+{
+  "Resources": {
+    "EmrVirtualCluster": {
+      "Type": "AWS::EMRContainers::VirtualCluster",
+      "Properties": {
+        "Name": "${ emr_cluster_name }",
+        "ContainerProvider": {
+          "Type": "EKS",
+          "Id": "${ eks_cluster_name }",
+          "Info": {
+            "EksInfo": {
+              "Namespace": "${ eks_name_space }"
+            }
+          }
+        },
+        "Tags": ${ tags }
+      }
+    }
+  },
+  "Outputs": {
+    "PrimaryId": {
+      "Value": {
+        "Ref": "EmrVirtualCluster"
+      }
+    }
+  }
+}
